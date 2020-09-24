@@ -1,17 +1,32 @@
-const textarea = document.getElementById("textarea");
-const key = document.getElementById("key");
-const output = document.getElementById("output");
+const plaintext = document.getElementById("plaintext");
+const ekey = document.getElementById("ekey");
+const ciphertext = document.getElementById("ciphertext");
+const dkey = document.getElementById("dkey");
 const alphabats = "abcdefghijklmnopqrstuvwxyz";
-function getVal() {
-	var keyvalue = +key.value % 26;
+function enCrypt() {
+	var keyvalue = +ekey.value % 26;
 
-	var result = " ";
-	var text = textarea.value;
+	var result = "";
+	var text = plaintext.value;
 
 	for (let c of text) {
 		result = result + alphabats[(+alphabats.indexOf(c) + keyvalue) % 26];
 	}
-	output.innerHTML = result;
+	dkey.value = 26 - keyvalue;
+	ciphertext.value = result;
 }
-textarea.addEventListener("input", getVal);
-key.addEventListener("input", getVal);
+function deCrypt() {
+	var keyvalue = dkey.value % 26;
+	var result = "";
+	var text = ciphertext.value;
+
+	for (let c of text) {
+		result = result + alphabats[(+alphabats.indexOf(c) + keyvalue) % 26];
+	}
+	ekey.value = 26 - keyvalue;
+	plaintext.value = result;
+}
+ciphertext.addEventListener("input", deCrypt);
+plaintext.addEventListener("input", enCrypt);
+dkey.addEventListener("input", deCrypt);
+ekey.addEventListener("input", enCrypt);
