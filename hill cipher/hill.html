@@ -7,8 +7,16 @@
 	</head>
 	<body>
 		<div class="menu encrypt">
+			<label for="plaintext"
+				>Enter text (english alphabets, even number of letters, no
+				spaces)</label
+			>
+			<br />
 			<textarea id="plaintext"></textarea>
-			<textarea id="ekey" type="number"></textarea>
+			<br />
+			<label for="ekey">Enter key matrics(comma seperated, 2x2) </label>
+			<br />
+			<textarea id="ekey" type="number">3,3,2,5</textarea>
 
 			<button id="encrypt">Encrypt</button>
 			<button id="decrypt">Decrypt</button>
