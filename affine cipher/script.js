@@ -12,6 +12,7 @@ function encrypt() {
 	var beta = parseInt(betaElm.value);
 	//convert textArray to numbers
 	var textNumberArray = textArray.map((elm) => {
+		elm=elm.toLowerCase();
 		return alphabets.indexOf(elm);
 	});
 	console.log(textNumberArray);
