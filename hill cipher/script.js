@@ -6,7 +6,13 @@ const decryptButton = document.getElementById("decrypt");
 const output = document.getElementById("output");
 function create2dArray(array) {
 	let n = array.length / 2;
-	let Matrics = new Array(n);
+	try {
+		var Matrics = new Array(n);
+	} catch (err) {
+		if (err instanceof RangeError) {
+			window.alert("add an additional letter to make even");
+		}
+	}
 	for (let i = 0; i < Matrics.length; i++) {
 		Matrics[i] = new Array(2);
 	}
@@ -30,21 +36,18 @@ function encrypt() {
 		.map((element) => {
 			return alphabets.indexOf(element);
 		});
-	console.log(messageNumber);
+
 	var keyMatrics = create2dArray(key);
 	var messageMatrics = create2dArray(messageNumber);
-	console.log(keyMatrics, messageMatrics);
+	console.log(plaintext.value, messageNumber, keyMatrics);
 
-	console.log(keyMatrics);
 	var outputNumber = messageMatrics.map((messageRow) => {
 		return keyMatrics.map((keyRow) => {
 			var sum = 0;
 			for (let i = 0; i < 2; i++) {
-				console.log(messageRow[i], keyRow[i]);
 				sum = (sum + messageRow[i] * keyRow[i]) % 26;
-				console.log(sum);
 			}
-			console.log(sum);
+
 			return sum;
 		});
 	});
